@@ -1,156 +1,45 @@
-
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>ASVAB Practice Test</title>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASVAB Practice V2</title>
 <style>
-:root{--bg:#0f172a;--card:#ffffff;--text:#111827;--muted:#64748b;--blue:#2563eb;--gray:#475569;--green:#166534;--red:#991b1b;}
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#eef2f7;color:var(--text)}
-header{background:var(--bg);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:10}
-h1{font-size:26px;margin:0 0 8px}
-.sub{color:#cbd5e1;font-size:14px}
-.wrap{max-width:900px;margin:0 auto;padding:16px}
-.panel,.card{background:white;border-radius:16px;box-shadow:0 2px 12px rgba(15,23,42,.12);padding:16px;margin:14px 0}
-.progress{height:12px;background:#dbe3ef;border-radius:99px;overflow:hidden;margin-top:12px}
-.bar{height:100%;width:0%;background:var(--blue);transition:.2s}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-button{appearance:none;border:0;border-radius:12px;padding:14px 16px;font-weight:700;font-size:16px;color:white;background:var(--blue);min-width:130px}
-button.secondary{background:var(--gray)}
-button.danger{background:#b91c1c}
-.section{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:8px}
-.q{font-size:18px;line-height:1.35;font-weight:700;margin-bottom:12px}
-.choice{display:flex;gap:12px;align-items:flex-start;border:2px solid #e5e7eb;border-radius:14px;margin:9px 0;padding:13px;background:#f8fafc;font-size:17px}
-.choice input{transform:scale(1.5);margin-top:3px}
-.choice:has(input:checked){border-color:var(--blue);background:#eff6ff}
-.feedback{display:none;margin-top:12px;padding:12px;border-radius:12px;font-weight:700}
-.correct{background:#dcfce7;color:var(--green);display:block}
-.wrong{background:#fee2e2;color:var(--red);display:block}
-#result{font-size:18px;line-height:1.45}
-.small{font-size:13px;color:var(--muted)}
-table{width:100%;border-collapse:collapse;margin-top:8px}
-td,th{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left}
-footer{height:40px}
-</style>
-</head>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;background:#eef2f7;color:#111827}
+header{background:#0f172a;color:white;padding:20px 16px;position:sticky;top:0;z-index:5} h1{margin:0;font-size:25px}.sub{color:#cbd5e1;font-size:14px;margin-top:5px}
+.wrap{max-width:900px;margin:auto;padding:14px}.panel,.card{background:white;border-radius:16px;box-shadow:0 2px 12px #0002;padding:16px;margin:14px 0}
+button{border:0;border-radius:13px;padding:14px 16px;font-weight:800;font-size:16px;color:white;background:#2563eb;margin:5px 5px 5px 0}
+.gray{background:#475569}.green{background:#15803d}.hidden{display:none!important}
+.mode{display:block;width:100%;text-align:left;background:white;color:#111827;border:2px solid #dbe3ef;box-shadow:0 2px 8px #0001}.mode b{font-size:18px}.mode span{display:block;color:#64748b;margin-top:4px;font-size:14px}
+.progress{height:12px;background:#dbe3ef;border-radius:99px;overflow:hidden;margin-top:12px}.bar{height:100%;width:0%;background:#2563eb}
+.section{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#64748b;font-weight:900;margin-bottom:8px}.q{font-size:18px;font-weight:800;line-height:1.35;margin-bottom:12px}
+.choice{display:flex;gap:12px;align-items:flex-start;border:2px solid #e5e7eb;border-radius:14px;margin:9px 0;padding:13px;background:#f8fafc;font-size:17px}.choice input{transform:scale(1.45);margin-top:3px}.choice:has(input:checked){border-color:#2563eb;background:#eff6ff}
+.feedback{display:none;margin-top:12px;padding:12px;border-radius:12px;font-weight:800;line-height:1.35}.correct{background:#dcfce7;color:#166534;display:block}.wrong{background:#fee2e2;color:#991b1b;display:block}
+table{width:100%;border-collapse:collapse;margin-top:8px}td,th{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left}.small{font-size:13px;color:#64748b}
+</style></head>
 <body>
-<header>
-  <h1>ASVAB Practice Test</h1>
-  <div class="sub">50-question diagnostic • clickable bubbles • instant section score</div>
-  <div class="progress"><div class="bar" id="bar"></div></div>
-</header>
-
+<header><h1>ASVAB Practice V2</h1><div class="sub" id="subtitle">Choose a mode</div><div class="progress"><div class="bar" id="bar"></div></div></header>
 <main class="wrap">
-  <section class="panel">
-    <div class="row">
-      <button id="gradeBtn">Grade Test</button>
-      <button class="secondary" id="clearBtn">Clear Answers</button>
-      <button class="secondary" id="reviewBtn">Jump to Missed</button>
-    </div>
-    <div id="result" class="panel" style="margin:14px 0 0">Not graded yet.</div>
-    <p class="small">Tip: tap the answer text or the bubble. The test saves your selected answers in this browser until you clear them.</p>
-  </section>
-  <form id="quiz"></form>
-  <footer></footer>
+<section id="home" class="panel">
+<h2>Pick your mode</h2>
+<button class="mode" onclick="startMode('practice')"><b>Practice Mode</b><span>Check each answer right away. Best for learning.</span></button>
+<button class="mode" onclick="startMode('test')"><b>Test Mode</b><span>Answer everything first, then grade at the end. Best for real score.</span></button>
+<button class="mode" onclick="startMode('mm')"><b>Mechanical/MM Focus — 7051</b><span>Only Mechanical + Auto/Shop. Checks answers right away.</span></button>
+</section>
+<section id="controls" class="panel hidden">
+<button class="gray" onclick="goHome()">Home</button><button class="green" id="gradeBtn" onclick="gradeTest()">Grade Test</button><button class="gray" onclick="clearAnswers()">Clear</button><button class="gray" onclick="jumpMissed()">Jump to missed</button>
+<div id="result" class="panel" style="margin:14px 0 0">Not graded yet.</div><p class="small" id="help"></p>
+</section>
+<form id="quiz"></form>
 </main>
-
 <script>
-const QUESTIONS = [{"section": "Arithmetic Reasoning", "question": "A Marine earns $2,400 per month and saves 25%. How much does he save each month?", "choices": ["$400", "$500", "$600", "$700"], "answer": "C", "explanation": "25% of 2400 is 600."}, {"section": "Arithmetic Reasoning", "question": "A convoy travels 180 miles in 3 hours. What is the average speed?", "choices": ["45 mph", "50 mph", "55 mph", "60 mph"], "answer": "D", "explanation": "180 \u00f7 3 = 60 mph."}, {"section": "Arithmetic Reasoning", "question": "A $1,200 item is discounted 15%. What is the sale price?", "choices": ["$1,020", "$1,050", "$1,080", "$1,100"], "answer": "A", "explanation": "15% of 1200 is 180. 1200 - 180 = 1020."}, {"section": "Arithmetic Reasoning", "question": "If 8 Marines unload a truck in 6 hours, how many total Marine-hours are required?", "choices": ["24", "36", "48", "56"], "answer": "C", "explanation": "8 x 6 = 48 Marine-hours."}, {"section": "Arithmetic Reasoning", "question": "A vehicle gets 20 miles per gallon. How many gallons are needed for 300 miles?", "choices": ["10", "12", "15", "18"], "answer": "C", "explanation": "300 \u00f7 20 = 15 gallons."}, {"section": "Arithmetic Reasoning", "question": "What is 3/4 + 1/8?", "choices": ["7/8", "5/6", "1", "3/8"], "answer": "A", "explanation": "3/4 = 6/8. 6/8 + 1/8 = 7/8."}, {"section": "Arithmetic Reasoning", "question": "A rope is 48 feet long and cut into 6 equal pieces. How long is each piece?", "choices": ["6 ft", "7 ft", "8 ft", "9 ft"], "answer": "C", "explanation": "48 \u00f7 6 = 8 ft."}, {"section": "Arithmetic Reasoning", "question": "If a battery costs $85 plus 6% tax, what is the total cost?", "choices": ["$89.10", "$90.10", "$91.00", "$92.10"], "answer": "B", "explanation": "6% of 85 is 5.10. 85 + 5.10 = 90.10."}, {"section": "Arithmetic Reasoning", "question": "A trip starts at 0800 and ends at 1345. How long is the trip?", "choices": ["5 hr 15 min", "5 hr 30 min", "5 hr 45 min", "6 hr"], "answer": "C", "explanation": "0800 to 1300 is 5 hours, plus 45 minutes."}, {"section": "Arithmetic Reasoning", "question": "A warehouse has 180 boxes. If 30% are shipped, how many remain?", "choices": ["54", "120", "126", "140"], "answer": "C", "explanation": "30% of 180 is 54 shipped. 180 - 54 = 126."}, {"section": "Math Knowledge", "question": "Solve: 3x + 5 = 20", "choices": ["x=3", "x=5", "x=7", "x=15"], "answer": "B", "explanation": "3x = 15, so x = 5."}, {"section": "Math Knowledge", "question": "What is the square root of 144?", "choices": ["10", "11", "12", "14"], "answer": "C", "explanation": "12 x 12 = 144."}, {"section": "Math Knowledge", "question": "What is 15% written as a decimal?", "choices": ["0.015", "0.15", "1.5", "15.0"], "answer": "B", "explanation": "15% = 15/100 = 0.15."}, {"section": "Math Knowledge", "question": "What is the area of a rectangle 8 ft long and 5 ft wide?", "choices": ["13 sq ft", "26 sq ft", "40 sq ft", "80 sq ft"], "answer": "C", "explanation": "Area = 8 x 5 = 40."}, {"section": "Math Knowledge", "question": "What is 2^4?", "choices": ["6", "8", "12", "16"], "answer": "D", "explanation": "2 x 2 x 2 x 2 = 16."}, {"section": "Math Knowledge", "question": "If y = 2x + 3 and x = 4, what is y?", "choices": ["8", "9", "10", "11"], "answer": "D", "explanation": "2(4)+3 = 11."}, {"section": "Math Knowledge", "question": "What is the perimeter of a square with side length 9?", "choices": ["18", "27", "36", "81"], "answer": "C", "explanation": "Perimeter = 4 x 9 = 36."}, {"section": "Math Knowledge", "question": "What is 5/10 simplified?", "choices": ["1/5", "1/2", "2/5", "5"], "answer": "B", "explanation": "5/10 = 1/2."}, {"section": "Math Knowledge", "question": "What is 0.6 as a fraction?", "choices": ["1/6", "3/5", "6/5", "2/3"], "answer": "B", "explanation": "0.6 = 6/10 = 3/5."}, {"section": "Math Knowledge", "question": "What is the next number: 4, 8, 12, 16, __?", "choices": ["18", "20", "22", "24"], "answer": "B", "explanation": "The pattern adds 4."}, {"section": "Word Knowledge", "question": "The word 'rapid' most nearly means:", "choices": ["slow", "quick", "heavy", "careful"], "answer": "B", "explanation": "Rapid means quick."}, {"section": "Word Knowledge", "question": "The word 'assist' most nearly means:", "choices": ["help", "argue", "carry", "avoid"], "answer": "A", "explanation": "Assist means help."}, {"section": "Word Knowledge", "question": "The word 'scarce' most nearly means:", "choices": ["common", "rare", "large", "fresh"], "answer": "B", "explanation": "Scarce means rare."}, {"section": "Word Knowledge", "question": "The word 'annual' most nearly means:", "choices": ["weekly", "monthly", "yearly", "daily"], "answer": "C", "explanation": "Annual means yearly."}, {"section": "Word Knowledge", "question": "The word 'construct' most nearly means:", "choices": ["destroy", "build", "measure", "hide"], "answer": "B", "explanation": "Construct means build."}, {"section": "Word Knowledge", "question": "The word 'observe' most nearly means:", "choices": ["watch", "ignore", "repair", "move"], "answer": "A", "explanation": "Observe means watch."}, {"section": "Word Knowledge", "question": "The word 'accurate' most nearly means:", "choices": ["wrong", "exact", "late", "weak"], "answer": "B", "explanation": "Accurate means exact."}, {"section": "Word Knowledge", "question": "The word 'combine' most nearly means:", "choices": ["separate", "mix", "drop", "delay"], "answer": "B", "explanation": "Combine means mix or join."}, {"section": "Word Knowledge", "question": "The word 'brief' most nearly means:", "choices": ["short", "loud", "bright", "empty"], "answer": "A", "explanation": "Brief means short."}, {"section": "Word Knowledge", "question": "The word 'purchase' most nearly means:", "choices": ["sell", "buy", "trade", "save"], "answer": "B", "explanation": "Purchase means buy."}, {"section": "Paragraph Comprehension", "question": "The squad left early because the road was expected to close by noon. Why did the squad leave early?", "choices": ["They were late", "The road might close", "They had no vehicles", "It was raining"], "answer": "B", "explanation": "The road was expected to close."}, {"section": "Paragraph Comprehension", "question": "The mechanic replaced the battery, but the vehicle still would not start. What happened after replacing the battery?", "choices": ["It started", "It still would not start", "It ran out of fuel", "It overheated"], "answer": "B", "explanation": "It still would not start."}, {"section": "Paragraph Comprehension", "question": "Because the shipment was delayed, the unit rescheduled training. What caused training to be rescheduled?", "choices": ["Bad weather", "A delayed shipment", "Missing Marines", "Broken radios"], "answer": "B", "explanation": "The shipment was delayed."}, {"section": "Paragraph Comprehension", "question": "The manual states eye protection must be worn before using the grinder. What should happen first?", "choices": ["Fuel the machine", "Wear eye protection", "Call a supervisor", "Clean the floor"], "answer": "B", "explanation": "Wear eye protection before using the grinder."}, {"section": "Paragraph Comprehension", "question": "Although the hike was difficult, the platoon finished ahead of schedule. What is true?", "choices": ["They quit early", "They finished late", "They finished ahead of schedule", "The hike was easy"], "answer": "C", "explanation": "They finished ahead of schedule."}, {"section": "General Science", "question": "What organ pumps blood through the body?", "choices": ["Lungs", "Heart", "Liver", "Kidney"], "answer": "B", "explanation": "The heart pumps blood."}, {"section": "General Science", "question": "Water freezes at what temperature on the Celsius scale?", "choices": ["0 C", "32 C", "50 C", "100 C"], "answer": "A", "explanation": "Water freezes at 0 C."}, {"section": "General Science", "question": "Which gas do humans need to breathe?", "choices": ["Nitrogen", "Oxygen", "Carbon dioxide", "Helium"], "answer": "B", "explanation": "Humans need oxygen."}, {"section": "General Science", "question": "What force pulls objects toward Earth?", "choices": ["Friction", "Magnetism", "Gravity", "Pressure"], "answer": "C", "explanation": "Gravity pulls objects toward Earth."}, {"section": "General Science", "question": "Which part of a plant absorbs water from the soil?", "choices": ["Leaves", "Stem", "Roots", "Flower"], "answer": "C", "explanation": "Roots absorb water."}, {"section": "Mechanical Comprehension", "question": "A longer wrench makes it easier to loosen a bolt because it increases:", "choices": ["friction", "torque", "weight", "speed"], "answer": "B", "explanation": "A longer wrench increases torque."}, {"section": "Mechanical Comprehension", "question": "A fixed pulley mainly changes the:", "choices": ["direction of force", "weight of object", "mass of rope", "temperature"], "answer": "A", "explanation": "A fixed pulley changes force direction."}, {"section": "Mechanical Comprehension", "question": "If two gears touch, they rotate in:", "choices": ["the same direction", "opposite directions", "no direction", "random directions"], "answer": "B", "explanation": "Meshed gears rotate opposite directions."}, {"section": "Mechanical Comprehension", "question": "Hydraulic systems work because liquids are mostly:", "choices": ["compressible", "incompressible", "flammable", "magnetic"], "answer": "B", "explanation": "Liquids do not compress much."}, {"section": "Mechanical Comprehension", "question": "Which simple machine is a ramp?", "choices": ["Lever", "Pulley", "Inclined plane", "Wheel and axle"], "answer": "C", "explanation": "A ramp is an inclined plane."}, {"section": "Auto and Shop", "question": "What part of a vehicle stores electrical energy?", "choices": ["Alternator", "Battery", "Radiator", "Muffler"], "answer": "B", "explanation": "The battery stores electrical energy."}, {"section": "Auto and Shop", "question": "What tool is best for measuring the outside diameter of a small round part?", "choices": ["Calipers", "Hammer", "Saw", "Pliers"], "answer": "A", "explanation": "Calipers measure diameter."}, {"section": "Auto and Shop", "question": "What system keeps an engine from overheating?", "choices": ["Brake system", "Cooling system", "Exhaust system", "Steering system"], "answer": "B", "explanation": "The cooling system controls engine temperature."}, {"section": "Auto and Shop", "question": "What tool tightens nuts and bolts to a specific tightness?", "choices": ["Torque wrench", "Drill bit", "Chisel", "Level"], "answer": "A", "explanation": "A torque wrench tightens to a set torque."}, {"section": "Auto and Shop", "question": "In a gasoline engine, what ignites the fuel-air mixture?", "choices": ["Spark plug", "Radiator", "Oil filter", "Transmission"], "answer": "A", "explanation": "Spark plugs ignite the mixture."}];
-const letters = ["A","B","C","D"];
-const quiz = document.getElementById("quiz");
-const saved = JSON.parse(localStorage.getItem("asvab_answers_v1") || "{}");
-
-function render(){
-  quiz.innerHTML = "";
-  QUESTIONS.forEach((item, idx) => {
-    const n = idx + 1;
-    const card = document.createElement("section");
-    card.className = "card";
-    card.id = "qcard" + n;
-    let choices = "";
-    item.choices.forEach((choice, ci) => {
-      const letter = letters[ci];
-      const checked = saved[n] === letter ? "checked" : "";
-      choices += `<label class="choice"><input type="radio" name="q${n}" value="${letter}" ${checked}> <span><b>${letter}.</b> ${escapeHtml(choice)}</span></label>`;
-    });
-    card.innerHTML = `<div class="section">${escapeHtml(item.section)}</div><div class="q">${n}. ${escapeHtml(item.question)}</div>${choices}<div class="feedback" id="fb${n}"></div>`;
-    quiz.appendChild(card);
-  });
-  updateProgress();
-}
-
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-}
-
-document.addEventListener("change", e => {
-  if(e.target.matches("input[type=radio]")){
-    const qnum = e.target.name.replace("q","");
-    saved[qnum] = e.target.value;
-    localStorage.setItem("asvab_answers_v1", JSON.stringify(saved));
-    updateProgress();
-  }
-});
-
-function updateProgress(){
-  const answered = Object.keys(saved).length;
-  document.getElementById("bar").style.width = (answered / QUESTIONS.length * 100) + "%";
-}
-
-function grade(){
-  let total = QUESTIONS.length, score = 0, firstMissed = null;
-  let sections = {};
-  QUESTIONS.forEach((item, idx) => {
-    const n = idx + 1;
-    const picked = saved[n] || "";
-    if(!sections[item.section]) sections[item.section] = {right:0,total:0};
-    sections[item.section].total++;
-    const fb = document.getElementById("fb"+n);
-    if(picked === item.answer){
-      score++;
-      sections[item.section].right++;
-      fb.className = "feedback correct";
-      fb.textContent = "Correct.";
-    } else {
-      if(firstMissed === null) firstMissed = n;
-      fb.className = "feedback wrong";
-      fb.textContent = `Incorrect. Your answer: ${picked || "blank"}. Correct: ${item.answer}. ${item.explanation}`;
-    }
-  });
-  let out = `<b>Score: ${score}/${total} (${Math.round(score/total*100)}%)</b>`;
-  out += `<table><tr><th>Section</th><th>Score</th></tr>`;
-  Object.keys(sections).forEach(s => out += `<tr><td>${escapeHtml(s)}</td><td>${sections[s].right}/${sections[s].total}</td></tr>`);
-  out += `</table>`;
-  document.getElementById("result").innerHTML = out;
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function clearAnswers(){
-  if(!confirm("Clear all answers and results?")) return;
-  Object.keys(saved).forEach(k => delete saved[k]);
-  localStorage.removeItem("asvab_answers_v1");
-  document.querySelectorAll("input[type=radio]").forEach(x => x.checked = false);
-  document.querySelectorAll(".feedback").forEach(x => {x.className="feedback"; x.textContent="";});
-  document.getElementById("result").textContent = "Not graded yet.";
-  updateProgress();
-}
-
-function jumpMissed(){
-  for(let i=1;i<=QUESTIONS.length;i++){
-    if((saved[i] || "") !== QUESTIONS[i-1].answer){
-      document.getElementById("qcard"+i).scrollIntoView({behavior:"smooth", block:"start"});
-      return;
-    }
-  }
-  alert("No missed questions found. Grade the test first, or everything is correct.");
-}
-
-document.getElementById("gradeBtn").addEventListener("click", grade);
-document.getElementById("clearBtn").addEventListener("click", clearAnswers);
-document.getElementById("reviewBtn").addEventListener("click", jumpMissed);
-render();
-</script>
-</body>
-</html>
+const QUESTIONS = [{"section": "Arithmetic Reasoning", "question": "A Marine earns $2,400 per month and saves 25%. How much does he save each month?", "choices": ["$400", "$500", "$600", "$700"], "answer": "C", "explanation": "25% of 2400 is 600."}, {"section": "Arithmetic Reasoning", "question": "A convoy travels 180 miles in 3 hours. What is the average speed?", "choices": ["45 mph", "50 mph", "55 mph", "60 mph"], "answer": "D", "explanation": "180 \u00f7 3 = 60 mph."}, {"section": "Arithmetic Reasoning", "question": "A $1,200 item is discounted 15%. What is the sale price?", "choices": ["$1,020", "$1,050", "$1,080", "$1,100"], "answer": "A", "explanation": "15% of 1200 is 180. 1200 - 180 = 1020."}, {"section": "Arithmetic Reasoning", "question": "If 8 Marines unload a truck in 6 hours, how many total Marine-hours are required?", "choices": ["24", "36", "48", "56"], "answer": "C", "explanation": "8 x 6 = 48 Marine-hours."}, {"section": "Arithmetic Reasoning", "question": "A vehicle gets 20 miles per gallon. How many gallons are needed for 300 miles?", "choices": ["10", "12", "15", "18"], "answer": "C", "explanation": "300 \u00f7 20 = 15 gallons."}, {"section": "Math Knowledge", "question": "Solve: 3x + 5 = 20", "choices": ["x=3", "x=5", "x=7", "x=15"], "answer": "B", "explanation": "3x = 15, so x = 5."}, {"section": "Math Knowledge", "question": "What is the square root of 144?", "choices": ["10", "11", "12", "14"], "answer": "C", "explanation": "12 x 12 = 144."}, {"section": "Math Knowledge", "question": "What is 15% written as a decimal?", "choices": ["0.015", "0.15", "1.5", "15.0"], "answer": "B", "explanation": "15% = 15/100 = 0.15."}, {"section": "Word Knowledge", "question": "The word 'rapid' most nearly means:", "choices": ["slow", "quick", "heavy", "careful"], "answer": "B", "explanation": "Rapid means quick."}, {"section": "Word Knowledge", "question": "The word 'assist' most nearly means:", "choices": ["help", "argue", "carry", "avoid"], "answer": "A", "explanation": "Assist means help."}, {"section": "Paragraph Comprehension", "question": "The squad left early because the road was expected to close by noon. Why did the squad leave early?", "choices": ["They were late", "The road might close", "They had no vehicles", "It was raining"], "answer": "B", "explanation": "The road was expected to close."}, {"section": "General Science", "question": "What organ pumps blood through the body?", "choices": ["Lungs", "Heart", "Liver", "Kidney"], "answer": "B", "explanation": "The heart pumps blood."}, {"section": "General Science", "question": "Water freezes at what temperature on the Celsius scale?", "choices": ["0 C", "32 C", "50 C", "100 C"], "answer": "A", "explanation": "Water freezes at 0 C."}, {"section": "Mechanical Comprehension", "question": "A longer wrench makes it easier to loosen a bolt because it increases:", "choices": ["friction", "torque", "weight", "speed"], "answer": "B", "explanation": "A longer wrench increases torque because force is applied farther from the bolt."}, {"section": "Mechanical Comprehension", "question": "A fixed pulley mainly changes the:", "choices": ["direction of force", "weight of object", "mass of rope", "temperature"], "answer": "A", "explanation": "A fixed pulley changes the direction of the pull."}, {"section": "Mechanical Comprehension", "question": "If two gears touch, they rotate in:", "choices": ["the same direction", "opposite directions", "no direction", "random directions"], "answer": "B", "explanation": "Meshed gears rotate opposite directions."}, {"section": "Mechanical Comprehension", "question": "Hydraulic systems work because liquids are mostly:", "choices": ["compressible", "incompressible", "flammable", "magnetic"], "answer": "B", "explanation": "Liquids do not compress much, so pressure transfers through the fluid."}, {"section": "Mechanical Comprehension", "question": "Which simple machine is a ramp?", "choices": ["Lever", "Pulley", "Inclined plane", "Wheel and axle"], "answer": "C", "explanation": "A ramp is an inclined plane."}, {"section": "Auto and Shop", "question": "What part of a vehicle stores electrical energy?", "choices": ["Alternator", "Battery", "Radiator", "Muffler"], "answer": "B", "explanation": "The battery stores electrical energy."}, {"section": "Auto and Shop", "question": "What tool is best for measuring the outside diameter of a small round part?", "choices": ["Calipers", "Hammer", "Saw", "Pliers"], "answer": "A", "explanation": "Calipers measure diameter."}, {"section": "Auto and Shop", "question": "What system keeps an engine from overheating?", "choices": ["Brake system", "Cooling system", "Exhaust system", "Steering system"], "answer": "B", "explanation": "The cooling system controls engine temperature."}, {"section": "Auto and Shop", "question": "What tool tightens nuts and bolts to a specific tightness?", "choices": ["Torque wrench", "Drill bit", "Chisel", "Level"], "answer": "A", "explanation": "A torque wrench tightens to a set torque."}, {"section": "Auto and Shop", "question": "In a gasoline engine, what ignites the fuel-air mixture?", "choices": ["Spark plug", "Radiator", "Oil filter", "Transmission"], "answer": "A", "explanation": "Spark plugs ignite the mixture."}];
+const letters=["A","B","C","D"]; let mode="home", active=[], answers={};
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function startMode(m){mode=m; answers=JSON.parse(localStorage.getItem("asvab_"+m)||"{}"); active=(m==="mm")?QUESTIONS.filter(q=>q.section==="Mechanical Comprehension"||q.section==="Auto and Shop"):QUESTIONS.slice(); document.getElementById("home").classList.add("hidden"); document.getElementById("controls").classList.remove("hidden"); document.getElementById("subtitle").textContent=m==="test"?"Test Mode":m==="mm"?"Mechanical/MM Focus":"Practice Mode"; document.getElementById("gradeBtn").style.display=m==="test"?"inline-block":"none"; document.getElementById("help").textContent=m==="test"?"Answers stay hidden until you tap Grade Test.":"After you choose an answer, it checks it immediately."; document.getElementById("result").textContent="Not graded yet."; render();}
+function goHome(){document.getElementById("quiz").innerHTML="";document.getElementById("controls").classList.add("hidden");document.getElementById("home").classList.remove("hidden");document.getElementById("subtitle").textContent="Choose a mode";document.getElementById("bar").style.width="0%";}
+function render(){let quiz=document.getElementById("quiz"); quiz.innerHTML=""; active.forEach((item,idx)=>{let n=idx+1, choices=""; item.choices.forEach((c,ci)=>{let L=letters[ci]; choices+=`<label class="choice"><input type="radio" name="q${n}" value="${L}" ${answers[n]===L?"checked":""}> <span><b>${L}.</b> ${esc(c)}</span></label>`;}); let card=document.createElement("section"); card.className="card"; card.id="qcard"+n; card.innerHTML=`<div class="section">${esc(item.section)}</div><div class="q">${n}. ${esc(item.question)}</div>${choices}<div class="feedback" id="fb${n}"></div>`; quiz.appendChild(card);}); updateProgress(); if(mode!=="test") Object.keys(answers).forEach(k=>showFeedback(Number(k)));}
+document.addEventListener("change",e=>{if(!e.target.matches("input[type=radio]"))return; let n=e.target.name.replace("q",""); answers[n]=e.target.value; localStorage.setItem("asvab_"+mode,JSON.stringify(answers)); updateProgress(); if(mode!=="test") showFeedback(Number(n));});
+function showFeedback(n){let q=active[n-1], p=answers[n], fb=document.getElementById("fb"+n); if(!p||!fb)return; if(p===q.answer){fb.className="feedback correct"; fb.textContent="Correct. "+q.explanation;} else {fb.className="feedback wrong"; fb.textContent=`Incorrect. Correct answer: ${q.answer}. ${q.explanation}`;}}
+function updateProgress(){document.getElementById("bar").style.width=(Object.keys(answers).length/Math.max(active.length,1)*100)+"%";}
+function gradeTest(){let score=0, sections={}; active.forEach((q,idx)=>{let n=idx+1,p=answers[n]||""; if(!sections[q.section])sections[q.section]={right:0,total:0}; sections[q.section].total++; if(p===q.answer){score++;sections[q.section].right++;} showFeedback(n);}); let out=`<b>Score: ${score}/${active.length} (${Math.round(score/active.length*100)}%)</b><table><tr><th>Section</th><th>Score</th></tr>`; Object.keys(sections).forEach(s=>out+=`<tr><td>${esc(s)}</td><td>${sections[s].right}/${sections[s].total}</td></tr>`); document.getElementById("result").innerHTML=out+"</table>"; window.scrollTo({top:0,behavior:"smooth"});}
+function clearAnswers(){if(!confirm("Clear this mode's answers?"))return; answers={}; localStorage.removeItem("asvab_"+mode); render(); document.getElementById("result").textContent="Not graded yet.";}
+function jumpMissed(){for(let i=1;i<=active.length;i++){if((answers[i]||"")!==active[i-1].answer){document.getElementById("qcard"+i).scrollIntoView({behavior:"smooth",block:"start"});return;}} alert("No missed or blank questions found.");}
+</script></body></html>
